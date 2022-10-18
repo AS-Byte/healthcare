@@ -1,0 +1,426 @@
+
+<main>
+  <!--? Slider Area Start-->
+  <div class="slider-area slider-area2">
+    <div class="slider-active dot-style">
+      <!-- Slider Single -->
+      <div class="single-slider  d-flex align-items-center slider-height2">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-xl-7 col-lg-8 col-md-10 ">
+              <div class="hero-wrapper">
+                <div class="hero__caption">
+                  <h1 data-animation="fadeInUp" data-delay=".3s">Detail de soins</h1>
+                  <p data-animation="fadeInUp" data-delay=".6s">Chercher :<br> {{post.typeSoinsName}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Slider Area End -->
+  <!--? Blog Area Start -->
+  <section class="blog_area single-post-area section-padding">
+    <div class="container">
+      <div class="row">
+        <div *ngIf="username !== post.patientName">
+          <app-vote-button [post]="post"></app-vote-button>
+        </div>
+        <div class="col-lg-8 posts-list">
+          <div class="single-post">
+            <div class="feature-img">
+              <img class="img-fluid" src="assets/img/blog/single_blog_1.png" alt="">
+            </div>
+            <div class="blog_details">
+              <h2 style="color: #2d2d2d;">{{post.soinsName}}
+              </h2>
+              <ul class="blog-info-link mt-3 mb-4">
+                <li><a href="#"><i class="fa fa-user"></i> {{post.patientName}} </a></li>
+                <li><a href="#"><i class="fas fa-clock"></i> {{post.duration}} </a></li>
+                <li><a href="#"><i class="fas fa-calendar-check"></i> {{post.commentCount}} Reservation(s)</a></li>
+              </ul>
+              <div class="excert" *ngIf="post.description != null">
+                <p class="excert" [innerHtml]="post.description">
+                  {{post.description}}
+                </p>
+              </div>
+
+              <div class="quote-wrapper">
+                <div class="quotes">
+
+                  <p style="color: black; font-weight: bold"> Soins demandés : </p>
+                  <p *ngIf="post.pansement != null" style="color: black; font-weight: normal"> - Pansement : {{post.pansement}} </p>
+                  <p *ngIf="post.pansementMeches == true" style="color: black; font-weight: normal"> - Pansement avec Mèches </p>
+                  <p *ngIf="post.injection != null" style="color: black; font-weight: normal"> - Injection : {{post.injection}} </p>
+                  <p *ngIf="post.injecter != null" style="color: black; font-weight: normal"> - Nom du produit injecté : {{post.injecter}} </p>
+                  <p *ngIf="post.perfusion == true" style="color: black; font-weight: normal"> - Perfusion </p>
+                  <p *ngIf="post.stomie != null" style="color: black; font-weight: normal"> - Stomie : {{post.stomie}} </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="navigation-top">
+            <div class="d-sm-flex justify-content-between text-center">
+              <p class="like-info"><span class="align-middle"><i class="fa fa-heart"></i></span>  </p>
+              <div class="col-sm-4 text-center my-2 my-sm-0">
+                <!-- <p class="comment-count"><span class="align-middle"><i class="fa fa-comment"></i></span> 06 Comments</p> -->
+              </div>
+              <ul class="social-icons">
+                <li><a href="https://www.facebook.com/sai4ull"><i class="fab fa-facebook-f"></i></a></li>
+                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fab fa-dribbble"></i></a></li>
+                <li><a href="#"><i class="fab fa-behance"></i></a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="blog-author">
+            <div class="media align-items-center">
+              <div class="media-body">
+                <div class="media contact-info">
+                  <span class="contact-info__icon"><i class="ti-calendar"></i></span>
+                  <div class="media-body">
+                    <h3>{{post.journeeSoins | date}}</h3>
+                  </div>
+                </div>
+                <div class="media contact-info">
+                  <span class="contact-info__icon"><i class="ti-time"></i></span>
+                  <div class="media-body">
+                    <h3>{{post.dureeSoins }}</h3>
+                  </div>
+                </div>
+
+                <div class="media contact-info">
+                  <span class="contact-info__icon"><i class="ti-home"></i></span>
+                  <div class="media-body">
+                    <h3>{{post.adresseSoins}}</h3>
+                  </div>
+                </div>
+                <div class="media contact-info">
+                  <span class="contact-info__icon"><i class="ti-tablet"></i></span>
+                  <div class="media-body">
+                    <h3>+216 {{post.telSoins}}</h3>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div class="comments-area" *ngIf="username === post.patientName">
+            <h4>{{post.commentCount}} Réservation(s)</h4>
+
+            <div class="comment-list"  *ngFor="let comment of comments">
+              <div class="single-comment justify-content-between d-flex">
+                <div class="user justify-content-between d-flex">
+                  <div class="thumb">
+                    <img src="#" alt="">
+                  </div>
+                  <div class="desc">
+                    <p>
+                      <i class="fas fa-coins"></i>{{comment.text}} Dinar
+                    </p>
+                    <div class="d-flex justify-content-between">
+                      <div class="d-flex align-items-center">
+                        <h5>
+                          <a href="#">{{comment.patientName}}</a>
+                        </h5>
+                        <p class="date">{{comment.createdDate | date}}</p>
+                      </div>
+                        <div class="reply-btn">
+                          <a (click)="changStaut(comment)" class="btn-reply text-uppercase"><i class="fas fa-check"></i></a>
+                        </div>
+                        <div class="reply-btn">
+                          <a href="" class="btn-reply text-uppercase"><i class="fas fa-times"></i></a>
+                        </div>
+                      <div class="reply-btn" *ngIf="comment.confirmPS">
+                        <a href="#" class="btn-reply text-uppercase genric-btn success-border circle"> Rendez-vous Confirmer </a>
+                      </div>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                      <div class="d-flex align-items-center">
+                        <h5>
+                          <a href="#">{{comment.telPS}} |</a>
+                        </h5>
+                        <h5>
+                          <a href="#">| {{comment.emailPS}}</a>
+                        </h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="comment-form"  *ngIf="username === post.patientName">
+            <h4>Votre demande de réservation : </h4>
+            <form class="form-contact comment_form" action="#" id="commentForm" [formGroup]="commentForm" (ngSubmit)="postComment()">
+              <div class="row">
+
+                <div class="col-12">
+                  <div class="form-group">
+                    <input class="form-control" [formControlName]="'telPS'" name="telPS" type="number" placeholder="Téléphone?">
+                    <input class="form-control" [formControlName]="'emailPS'" name="emailPS" type="text" placeholder="Email?">
+                  </div>
+                  <div class="form-group">
+                    <input class="form-control" [formControlName]="'text'" name="text" type="text" placeholder="Prix d'intervention?">
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <button type="submit" class="button button-contactForm btn_1 boxed-btn">Réservez</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!--
+        <div class="col-lg-4">
+          <div class="blog_right_sidebar">
+            <aside class="single_sidebar_widget search_widget">
+              <form action="#">
+                <div class="form-group">
+                  <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder='Search Keyword'
+                           onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Keyword'">
+                    <div class="input-group-append">
+                      <button class="btns" type="button"><i class="ti-search"></i></button>
+                    </div>
+                  </div>
+                </div>
+                <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
+                        type="submit">Search</button>
+              </form>
+            </aside>
+            <aside class="single_sidebar_widget post_category_widget">
+              <h4 class="widget_title" style="color: #2d2d2d;">Category</h4>
+              <ul class="list cat-list">
+                <li>
+                  <a href="#" class="d-flex">
+                    <p>Resaurant food</p>
+                    <p>(37)</p>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="d-flex">
+                    <p>Travel news</p>
+                    <p>(10)</p>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="d-flex">
+                    <p>Modern technology</p>
+                    <p>(03)</p>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="d-flex">
+                    <p>Product</p>
+                    <p>(11)</p>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="d-flex">
+                    <p>Inspiration</p>
+                    <p>(21)</p>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="d-flex">
+                    <p>Health Care</p>
+                    <p>(21)</p>
+                  </a>
+                </li>
+              </ul>
+            </aside>
+            <aside class="single_sidebar_widget popular_post_widget">
+              <h3 class="widget_title" style="color: #2d2d2d;">Recent Post</h3>
+              <div class="media post_item">
+                <img src="assets/img/post/post_1.png" alt="post">
+                <div class="media-body">
+                  <a href="blog_details.html">
+                    <h3 style="color: #2d2d2d;">From life was you fish...</h3>
+                  </a>
+                  <p>January 12, 2019</p>
+                </div>
+              </div>
+              <div class="media post_item">
+                <img src="assets/img/post/post_2.png" alt="post">
+                <div class="media-body">
+                  <a href="blog_details.html">
+                    <h3 style="color: #2d2d2d;">The Amazing Hubble</h3>
+                  </a>
+                  <p>02 Hours ago</p>
+                </div>
+              </div>
+              <div class="media post_item">
+                <img src="assets/img/post/post_3.png" alt="post">
+                <div class="media-body">
+                  <a href="blog_details.html">
+                    <h3 style="color: #2d2d2d;">Astronomy Or Astrology</h3>
+                  </a>
+                  <p>03 Hours ago</p>
+                </div>
+              </div>
+              <div class="media post_item">
+                <img src="assets/img/post/post_4.png" alt="post">
+                <div class="media-body">
+                  <a href="blog_details.html">
+                    <h3 style="color: #2d2d2d;">Asteroids telescope</h3>
+                  </a>
+                  <p>01 Hours ago</p>
+                </div>
+              </div>
+            </aside>
+            <aside class="single_sidebar_widget tag_cloud_widget">
+              <h4 class="widget_title" style="color: #2d2d2d;">Tag Clouds</h4>
+              <ul class="list">
+                <li>
+                  <a href="#">project</a>
+                </li>
+                <li>
+                  <a href="#">love</a>
+                </li>
+                <li>
+                  <a href="#">technology</a>
+                </li>
+                <li>
+                  <a href="#">travel</a>
+                </li>
+                <li>
+                  <a href="#">restaurant</a>
+                </li>
+                <li>
+                  <a href="#">life style</a>
+                </li>
+                <li>
+                  <a href="#">design</a>
+                </li>
+                <li>
+                  <a href="#">illustration</a>
+                </li>
+              </ul>
+            </aside>
+            <aside class="single_sidebar_widget instagram_feeds">
+              <h4 class="widget_title" style="color: #2d2d2d;">Instagram Feeds</h4>
+              <ul class="instagram_row flex-wrap">
+                <li>
+                  <a href="#">
+                    <img class="img-fluid" src="assets/img/post/post_5.png" alt="">
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <img class="img-fluid" src="assets/img/post/post_6.png" alt="">
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <img class="img-fluid" src="assets/img/post/post_7.png" alt="">
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <img class="img-fluid" src="assets/img/post/post_8.png" alt="">
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <img class="img-fluid" src="assets/img/post/post_9.png" alt="">
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <img class="img-fluid" src="assets/img/post/post_10.png" alt="">
+                  </a>
+                </li>
+              </ul>
+            </aside>
+            <aside class="single_sidebar_widget newsletter_widget">
+              <h4 class="widget_title" style="color: #2d2d2d;">Newsletter</h4>
+              <form action="#">
+                <div class="form-group">
+                  <input type="email" class="form-control" onfocus="this.placeholder = ''"
+                         onblur="this.placeholder = 'Enter email'" placeholder='Enter email' required>
+                </div>
+                <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
+                        type="submit">Subscribe</button>
+              </form>
+            </aside>
+          </div>
+        </div>
+        -->
+      </div>
+    </div>
+  </section>
+  <!-- Blog Area End -->
+</main>
+
+
+<!--
+<div class="container">
+  <div class="row">
+    <hr />
+    <div class="col-md-9">
+      <div class="row post">
+
+        <div class="col-md-1">
+          <app-vote-button [post]="post"></app-vote-button>
+        </div>
+
+        <div class="col-md-11">
+          <span> Personnel de santé :
+            <span class="subreddit-text"><a class="post-url" href="">{{post.typeSoinsName}}</a></span>
+            <span> | Publié
+                <span> {{post.duration}} </span>
+                par
+              <a *ngIf="post.patientName === null" class="username" href="">Anonymous</a>
+              <a *ngIf="post.patientName != null" class="username" href="">{{post.patientName}}</a>
+            </span>
+          </span>
+          <hr />
+          <a routerLink="post.url" class="post-title">{{post.soinsName}}</a>
+          <hr />
+          <div style="color: black; font-weight: bold"> Soins demandés : </div>
+          <div *ngIf="post.pansement != null" style="color: black; font-weight: normal"> - Pansement : {{post.pansement}} </div>
+          <div *ngIf="post.pansementMeches == true" style="color: black; font-weight: normal"> - Pansement avec Mèches </div>
+          <div *ngIf="post.injection != null" style="color: black; font-weight: normal"> - Injection : {{post.injection}} </div>
+          <div *ngIf="post.injecter != null" style="color: black; font-weight: normal"> - Nom du produit injecté : {{post.injecter}} </div>
+          <div *ngIf="post.perfusion == true" style="color: black; font-weight: normal"> - Perfusion </div>
+          <div *ngIf="post.stomie != null" style="color: black; font-weight: normal"> - Stomie : {{post.stomie}} </div>
+          <hr />
+          <div *ngIf="post.description != null" style="color: black; font-weight: bold">Autre Soins :</div>
+          <div style="color: black; font-weight: normal">
+            <p class="post-text" [innerHtml]="post.description"></p>
+          </div>
+
+          <hr />
+          <div class="post-comment">
+            <form [formGroup]="commentForm" (ngSubmit)="postComment()">
+              <div class="form-group">
+                <textarea class="form-control" [formControlName]="'text'" placeholder="Préciser votre prix d'ntervention en dinar"></textarea>
+              </div>
+              <button type="submit" class="login float-right">Réserver</button>
+            </form>
+          </div>
+
+          <div style="margin-top: 60px;" *ngFor="let comment of comments">
+            <div class="comment">
+              <div class="username">
+                <a routerLink="/user/comment.username">{{comment.patientName}}</a>
+              </div>
+              <div>
+                <p>{{comment.createdDate | date}}</p>
+              </div>
+              <b>{{comment.text}}</b>
+            </div>
+            <hr />
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+-->

@@ -1,0 +1,52 @@
+{
+	"info": {
+		"_postman_id": "77c913c2-a896-478a-afdc-1d6ab36d70d4",
+		"name": "Docker test collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET httpbin.org",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "82ba127d-283a-4514-8b34-a9a47c1135d3",
+						"exec": [
+							"pm.test(\"Your test name\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.args.foo).to.eql(\"bar\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "httpbin.org/get?foo=bar",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"get"
+					],
+					"query": [
+						{
+							"key": "foo",
+							"value": "bar"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

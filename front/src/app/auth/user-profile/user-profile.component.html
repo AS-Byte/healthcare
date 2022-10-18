@@ -1,0 +1,208 @@
+<main>
+  <!--? Slider Area Start-->
+  <div class="slider-area slider-area2">
+    <div class="slider-active dot-style">
+      <!-- Slider Single -->
+      <div class="single-slider  d-flex align-items-center slider-height2">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-xl-7 col-lg-8 col-md-10 ">
+              <div class="hero-wrapper">
+                <div class="hero__caption">
+                  <h1 data-animation="fadeInUp" data-delay=".3s">Bonjour {{name}}</h1>
+                  <p *ngIf="patient.ps == 'non' " data-animation="fadeInUp" data-delay=".6s">Vous avez publié<br> {{postLength}} Demande(s)<br>Vérifier l'historique des demandes de soins<br>Vos demandes de soins:</p>
+                  <p *ngIf="patient.ps == 'oui' " data-animation="fadeInUp" data-delay=".6s">Vous avez réservez<br> {{commentLength}} Réservation(s)<br>Vérifier l'historique des réservation<br>Vos demandes de(s) réservation(s):</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Slider Area End -->
+  <!--? Blog Area Start-->
+  <section class="blog_area section-padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mb-5 mb-lg-0">
+          <div class="blog_left_sidebar">
+            <div *ngIf="patient.ps == 'non' ">
+              <app-soins-tile [posts]="posts"></app-soins-tile>
+            </div>
+            <div class="comments-area" *ngIf="patient.ps == 'oui' " >
+              <p data-animation="fadeInUp" data-delay=".6s">Mes Réservations :</p>
+              <div class="comment-list"  *ngFor="let comment of comments">
+              <div class="single-comment justify-content-between d-flex" *ngIf="comment.confirmPS">
+                <div class="user justify-content-between d-flex">
+                  <div class="thumb">
+                    <img src="assets/img/comment/comment_3.png" alt="">
+                  </div>
+                  <div class="desc">
+                    <p class="comment" >
+                      <i class="fas fa-coins"></i>{{comment.text}} Dinars
+                    </p>
+                    <div class="d-flex justify-content-between">
+                      <div class="d-flex align-items-center">
+                        <h5>
+                          <a href="/user/comment.username">{{comment.patientName}}</a>
+                        </h5>
+                        <p class="date">{{comment.createdDate | date}}</p>
+                      </div>
+                      <div class="reply-btn" *ngIf="comment.confirmPS">
+                        <a (click)="goToPost(comment.soinsId)" class="btn-reply text-uppercase genric-btn success-border circle"> Rendez-vous Confirmer </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="blog_right_sidebar">
+            <aside class="single_sidebar_widget search_widget">
+              <form action="#">
+                <div class="form-group">
+                  <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder='Search Keyword'
+                           onfocus="this.placeholder = ''"
+                           onblur="this.placeholder = 'Search Keyword'">
+                    <div class="input-group-append">
+                      <button class="btns" type="button"><i class="ti-search"></i></button>
+                    </div>
+                  </div>
+                </div>
+                <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
+                        type="submit">Search</button>
+              </form>
+            </aside>
+            <aside class="single_sidebar_widget post_category_widget">
+              <h4 class="widget_title" style="color: #2d2d2d;">Personnel de Santé</h4>
+              <ul class="list cat-list">
+                <li>
+                  <a href="#" class="d-flex">
+                    <p>Infirmier</p>
+                    <p>(137)</p>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="d-flex">
+                    <p>Sage Femme</p>
+                    <p>(10)</p>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="d-flex">
+                    <p>Kinésithérapeute</p>
+                    <p>(57)</p>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="d-flex">
+                    <p>Orthoptiste</p>
+                    <p>(11)</p>
+                  </a>
+                </li>
+              </ul>
+            </aside>
+            <aside class="single_sidebar_widget tag_cloud_widget">
+              <h4 class="widget_title" style="color: #2d2d2d;">Soins</h4>
+              <ul class="list">
+                <li>
+                  <a href="#">Injections</a>
+                </li>
+                <li>
+                  <a href="#">Pansements</a>
+                </li>
+                <li>
+                  <a href="#">Rééducations</a>
+                </li>
+                <li>
+                  <a href="#">Hôpitaux</a>
+                </li>
+                <li>
+                  <a href="#">Cliniques</a>
+                </li>
+                <li>
+                  <a href="#">Ambulances</a>
+                </li>
+                <li>
+                  <a href="#">Perfusions</a>
+                </li>
+              </ul>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Blog Area End -->
+
+  <nav class="blog-pagination justify-content-center d-flex">
+    <ul class="pagination">
+      <li class="page-item">
+        <a href="#" class="page-link" aria-label="Previous">
+          <i class="ti-angle-left"></i>
+        </a>
+      </li>
+      <li class="page-item">
+        <a href="#" class="page-link">1</a>
+      </li>
+      <li class="page-item active">
+        <a href="#" class="page-link">2</a>
+      </li>
+      <li class="page-item">
+        <a href="#" class="page-link" aria-label="Next">
+          <i class="ti-angle-right"></i>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+</main>
+
+<!--
+<div class="container">
+  <div>
+    Bonjour <b>{{name}}</b>.
+  </div>
+
+
+  <div *ngIf="patient.ps == 'non' ">
+     <br /> Vous avez publié <b>{{postLength}}</b> fois.
+    Vous pouvez Vérifier l'historique des demandes de soins.
+  <hr />
+  <div>
+    Vos demandes de soins:
+  </div>
+  <app-soins-tile [posts]="posts"></app-soins-tile>
+  </div>
+
+
+  <div *ngIf="patient.ps == 'oui' ">
+    <div>
+      Vous avez réservez
+      <b>{{commentLength}}</b> fois.
+      Vous pouvez vérifier l'historique des réservation.
+    </div>
+    <hr />
+    <div>
+      Les réservations:
+    </div>
+    <div *ngFor="let comment of comments">
+      <div class="comment">
+        <div class="username">
+          <a routerLink="/user/comment.username">{{comment.patientName}}</a>
+        </div>
+        <div>
+          <p>{{comment.createdDate}}</p>
+        </div>
+        <b>{{comment.text}}</b>
+      </div>
+      <hr />
+    </div>
+  </div>
+</div>
+-->

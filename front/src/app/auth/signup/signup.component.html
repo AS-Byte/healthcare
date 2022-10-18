@@ -1,0 +1,119 @@
+<div class="register-section">
+  <div class="row justify-content-center">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header" style="text-align: center">
+          <h4>Register</h4>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="signupForm" (ngSubmit)="signUp()">
+
+            <div class="form-group row">
+              <label for="email_address" class="col-md-4 col-form-label text-md-right">E-Mail
+                Address</label>
+              <div class="col-md-6">
+                <input type="text" [formControlName]="'email'" id="email_address" class="form-control" name="email-address" required
+                       autofocus>
+                <span *ngIf="!signupForm.get('email').valid && signupForm.get('email').touched">
+                   Please provide a valid email
+                </span>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label text-md-right">User Name</label>
+              <div class="col-md-6">
+                <input type="text" [formControlName]="'username'" class="form-control" required autofocus>
+                <span *ngIf="!signupForm.get('username').valid && signupForm.get('username').touched">Please provide a valid username </span>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label text-md-right">Adresse :</label>
+              <div class="col-md-6">
+                <input type="text" [formControlName]="'adress'" class="form-control" required autofocus>
+                <span *ngIf="!signupForm.get('adress').valid && signupForm.get('adress').touched">Please provide a valid adress </span>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label text-md-right">Numéro de téléphone</label>
+              <div class="col-md-6">
+                <input type="number" [formControlName]="'phone'" class="form-control" required autofocus>
+                <span *ngIf="!signupForm.get('phone').valid && signupForm.get('phone').touched">Please provide a valid phone number</span>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
+              <div class="col-md-6">
+                <input type="password" [formControlName]="'password'" id="password" class="form-control" name="password" required>
+                <span *ngIf="!signupForm.get('password').valid && signupForm.get('password').touched">Please provide a valid Password</span>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="ps1" class="col-md-4 col-form-label text-md-right">êtes vous un personnel de santé?</label>
+              <div class="col-md-6">
+                <select class="custom-select mr-sm-2" id="ps1" [formControlName]="'ps'">
+                  <option selected value="non">non</option>
+                  <option value="oui">oui</option>
+                </select>
+              </div>
+              <span *ngIf="!signupForm.get('ps').valid"></span>
+            </div>
+
+            <div *ngIf="signupForm.get('ps').value == 'oui' ">
+
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label text-md-right">Numéro carte d’identité :</label>
+                <div class="col-md-6">
+                  <input type="number" [formControlName]="'cin'" class="form-control" required autofocus>
+                  <span *ngIf="signupForm.get('cin').value < 8 && signupForm.get('cin').touched">Entrer 8 chiffres</span>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-md-4 col-form-label text-md-right">Numéro d'assurance :</label>
+                <div class="col-md-6">
+                  <input type="number" [formControlName]="'assurance'" class="form-control" required autofocus>
+                  <span *ngIf="signupForm.get('assurance').value < 8 && signupForm.get('assurance').touched">Entrer 8 chiffres</span>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="diplome" class="col-md-4 col-form-label text-md-right">Votre diplôme professionnel :</label>
+                <div class="col-md-6">
+                  <select class="custom-select mr-sm-2" id="diplome" [formControlName]="'diplome'">
+                    <option value="Infirmier">Sciences Infirmières</option>
+                    <option value="Kinésithérapeute">Kinésithérapeute</option>
+                    <option value="Sage Femme">Sage Femme</option>
+                    <option value="Orthoptiste">Orthoptie</option>
+                  </select>
+                </div>
+                <span *ngIf="!signupForm.get('diplome').valid && signupForm.get('diplome').touched"></span>
+              </div>
+
+            </div>
+
+            <span class="col-md-6 offset-md-4">
+                <button type="submit"
+                        [disabled]="!signupForm.get('username').valid &&
+                                     !signupForm.get('email').valid &&
+                                     !signupForm.get('phone').valid &&
+                                     !signupForm.get('adress').valid &&
+                                     !signupForm.get('password').valid &&
+                                     !signupForm.get('ps').valid"
+                        class="sign-up">
+                S'inscrire
+                </button>
+              <span style="padding-left: 15px"> J'ai déjà un compte <a routerLink="/login"> Se Connecter</a></span>
+            </span>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+</div>

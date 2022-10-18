@@ -1,0 +1,78 @@
+<article class="blog_item" *ngFor="let post of posts">
+  <div class="blog_item_img">
+    <img class="card-img rounded-0" src="menu/img/blog/single_blog_1.png" alt="">
+    <a href="#" class="blog_item_date">
+      <h3></h3>
+      <p>{{post.journeeSoins | date}}</p>
+    </a>
+  </div>
+  <div class="blog_details">
+    <a class="d-inline-block" href="blog_details.html">
+      <h2 class="blog-head" style="color: #4cd3e3;">{{post.typeSoinsName}}</h2>
+    </a>
+    <br>
+    <a class="d-inline-block" href="blog_details.html">
+      <h2 class="blog-head" style="color: #2d2d2d;">{{post.soinsName}}</h2>
+    </a>
+    <p [innerHtml]="post.description"></p>
+    <ul class="blog-info-link">
+      <li><a href="#"><i class="fa fa-user"></i> {{post.patientName}} </a></li>
+      <li><a href="#"><i class="fas fa-clock"></i> {{post.duration}} </a></li>
+      <li><a href="#"><i class="fas fa-calendar-check"></i> {{post.commentCount}} Reservation(s)</a></li>
+    </ul>
+    <ul class="blog-info-link">
+      <button (click)="goToPost(post.id)" class="button rounded-0 primary-bg text-black-50 w-100 btn_1 boxed-btn"
+                  type="submit">Afficher</button>
+      <div class="align-content-center" *ngIf="username !== post.patientName">
+        <app-vote-button [post]="post"></app-vote-button>
+      </div>
+
+
+    </ul>
+  </div>
+  <br>
+</article>
+
+
+
+
+
+
+<!--
+<div class="row post" *ngFor="let post of posts">
+
+
+
+  <div class="col-md-1">
+    <app-vote-button [post]="post"></app-vote-button>
+  </div>
+
+  <div class="col-md-11">
+        <span class="subreddit-info">
+            Personnel de santé : <span class="subreddit-text"><a class="posturl" routerLink="">{{post.typeSoinsName}}</a></span>
+            <span> . Publié par <a class="username" routerLink="/user/{{post.patientName}}">{{post.patientName}}</a></span>
+            <span> . {{post.duration}}</span>
+        </span>
+    <hr />
+    <div class="post-title">
+      <a class="postname" href="{{post.url}}">{{post.soinsName}}</a>
+    </div>
+    <div>
+      <p class="post-text" [innerHtml]="post.description"></p>
+    </div>
+    <hr />
+
+    <span>
+            <a class="btnCommments" role="button">
+                <fa-icon [icon]="['fas', 'bell']"></fa-icon>
+                {{post.commentCount}} Reservation(s)
+            </a>
+            <button class="login" (click)="goToPost(post.id)">
+                Afficher
+            </button>
+        </span>
+
+  </div>
+
+</div>
+-->

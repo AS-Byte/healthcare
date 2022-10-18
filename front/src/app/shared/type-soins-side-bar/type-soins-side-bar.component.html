@@ -1,0 +1,39 @@
+<section class="wantToWork-area section-bg3" data-background="assets/img/gallery/section_bg01.png">
+  <div class="container">
+    <div class="wants-wrapper w-padding2">
+      <div class="row align-items-center justify-content-between">
+        <div class="col-xl-7 col-lg-9 col-md-8">
+          <div class="wantToWork-caption wantToWork-caption2">
+            <h2>Comment ça fonctionne</h2>
+            <p>Prenez rendez vous avec votre prochain professionnel de santé<br> Notre plateforme vous connecte à des infirmier(e)s, kinésithérapeutes et aides soignant(e)s</p>
+          </div>
+        </div>
+        <div class="col-xl-2 col-lg-3 col-md-4" *ngIf="displayViewAll">
+          <a routerLink="/list-typeSoinss" class="btn f-right sm-left" >Afficher Personnels de Soins</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--? Services Area Start -->
+<div class="service-area">
+  <div class="container">
+    <div class="row" >
+      <div class="col-lg-4 col-md-6 col-sm-6" *ngFor="let subreddit of subreddits">
+        <div class="single-cat text-center mb-50">
+          <div class="cat-icon">
+            <img src="../../../assets/menu/img/icon/services1.svg" alt="">
+          </div>
+          <div class="cat-cap">
+            <h5><a href="#">{{subreddit.name}}</a></h5>
+            <p>est une personne qui exerce ses compétences et son jugement, fournit un service lié au maintien, à l'amélioration de la santé des individus</p>
+            <a href="#" class="plus-btn"><i class="ti-plus"></i></a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- Services Area End -->
+

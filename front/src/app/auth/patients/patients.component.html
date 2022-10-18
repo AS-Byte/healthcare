@@ -1,0 +1,85 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+<div class="container" id="main-container">
+  <form class="form-inline my-2 my-lg-0">
+    <div class="col-lg-4">
+      <div class="blog_right_sidebar">
+        <aside class="single_sidebar_widget search_widget">
+          <form action="#">
+            <div class="form-group">
+              <div class="input-group mb-3">
+    <input type="search" (ngModelChange)="serchPatients(key.value)" #key="ngModel" ngModel=""
+           name="key" id="searchName" class="form-control mr-sm-2" placeholder="Search by name/email...">
+                <div class="input-group-append">
+                  <button class="btns" type="button"><i class="ti-search"></i></button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </aside>
+      </div>
+    </div>
+  </form>
+  <br>
+  <div class="row">
+    <div *ngFor="let patient of patients" class="col-md-6 col-xl-3">
+      <div *ngIf="patient.ps == 'oui'">
+        <div class="card m-b-30">
+        <div class="card-body row">
+          <div class="col-6">
+            <a href=""><img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="" class="img-fluid rounded-circle w-60"></a>
+          </div>
+          <div class="col-6 card-title align-self-center mb-0">
+            <h5>Personnelle de santé :{{patient.patientname}}</h5>
+            <p class="m-0">{{patient.diplome}}</p>
+          </div>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><i class="fa fa-envelope float-right"></i>Email : <a href="#">{{patient.email}}</a></li>
+          <li class="list-group-item"><i class="fa fa-phone float-right"></i>{{patient.phone}}</li>
+          <li class="list-group-item"><i class="fa fa-address-card float-right"></i>{{patient.adress}}</li>
+          <li class="list-group-item"><i class="fa fa-adn float-right"></i>{{patient.assurance}}</li>
+        </ul>
+          <!--
+        <div class="card-body">
+          <div class="float-right btn-group btn-group-sm">
+            <a (click)="onOpenModal(patient,'edit')" class="btn btn-primary" data-toggle="modal" data-placement="top" data-original-title="edit"><i class="fa fa-pencil"></i> </a>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-times"></i></button>
+          </div>
+          <ul class="social-links list-inline mb-0">
+            <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Facebook"><i class="fa fa-facebook-f"></i></a></li>
+            <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
+            <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Skype"><i class="fa fa-skype"></i></a></li>
+          </ul>
+        </div>
+        -->
+      </div>
+      </div>
+
+
+<!-- Modal
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button (click)="onDeletePatient(patient?.patientname)" type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+-->
+
+    </div>
+  </div>
+</div>

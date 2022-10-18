@@ -1,0 +1,292 @@
+
+<main>
+  <!--? Slider Area Start-->
+    <div class="slider-area slider-area2">
+      <div class="slider-active dot-style">
+        <!-- Slider Single -->
+        <div class="single-slider  d-flex align-items-center slider-height2">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-xl-7 col-lg-8 col-md-10 ">
+                <div class="hero-wrapper">
+                  <div class="hero__caption">
+                    <h1 data-animation="fadeInUp" data-delay=".3s">Formulaire demande de soins</h1>
+                    <p data-animation="fadeInUp" data-delay=".6s">Remplissez votre demande :</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container box_1170">
+        <div class="row">
+          <div class="col-lg-12 col-md-12">
+            <form [formGroup]="createPostForm">
+              <div class="mt-15">
+              <select class="form-control" style="margin-top: 10px" [(ngModel)]="typeSoins" [formControlName]="'typeSoinsName'" >
+                <option selected >Quel professionnel recherchez-vous ?</option>
+                <option *ngFor="let subreddit of subreddits">{{subreddit.name}}</option>
+              </select>
+              </div>
+                <div *ngIf="typeSoins == 'Infirmier' ">
+                  <div class="mt-10">
+                    <input [formControlName]="'soinsName'" type="text" name="last_name" placeholder="Titre"
+                           onfocus="this.placeholder = ''" onblur="this.placeholder = 'Titre'" required
+                           class="single-input">
+                    <span *ngIf="!createPostForm.get('soinsName').valid && createPostForm.get('soinsName').touched">
+                   Entrer un titre pour votre soins
+                    </span>
+                  </div>
+                  <div class="input-group-icon mt-10">
+                    <div class="form-select" id="default-select4">Pansement
+                      <select [formControlName]="'pansement'">
+                        <option value="Plaie">Plaie</option>
+                        <option value="Brulure">Brûlure</option>
+                        <option value="Escarre">Escarre</option>
+                        <option value="Ulcere">Ulcère</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="switch-wrap d-flex justify-content-between mt-10">
+                    <p>Pansement avec mèches</p>
+                    <div class="primary-checkbox">
+                      <input type="checkbox" id="default-checkbox" [formControlName]="'pansementMeches'">
+                      <label for="default-checkbox"></label>
+                    </div>
+                  </div>
+                  <div class="input-group-icon mt-10">
+                    <div class="form-select" id="default-select5">Type de l’injection
+                      <select [formControlName]="'injection'">
+                        <option value="Anticoagulant">Anticoagulant</option>
+                        <option value="Vaccin">Vaccin</option>
+                        <option value="Insuline">Insuline</option>
+                        <option value="Vitamine">Vitamine</option>
+                        <option value="Anti-inflammatoire">Anti-inflammatoire</option>
+                        <option value="Antibiotique">Antibiotique</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="mt-10">
+                    <input [formControlName]="'injecter'" type="text" name="first_name" placeholder="Nom du produit injecté"
+                           onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nom du produit injecté'" required
+                           class="single-input">
+                  </div>
+                  <div class="switch-wrap d-flex justify-content-between mt-10">
+                    <p>Perfusion</p>
+                    <div class="primary-checkbox">
+                      <input type="checkbox" id="default-checkbox1" [formControlName]="'perfusion'">
+                      <label for="default-checkbox1"></label>
+                    </div>
+                  </div>
+                  <div class="input-group-icon mt-10">
+                    <div class="form-select" id="default-select6">Stomie
+                      <select [formControlName]="'stomie'">
+                        <option selected disabled>Nature de stomie</option>
+                        <option value="digestive">digestive</option>
+                        <option value="urinaire">urinaire</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="input-group-icon mt-10">
+                    <div class="form-select" id="default-select7">Horaire
+                      <select [formControlName]="'dureeSoins'">
+                        <option selected disabled>Horaire de soins</option>
+                        <option value="Matinée">Matinée</option>
+                        <option value="Après Midi">Après Midi</option>
+                        <option value="Toute la journée">Toute la journée</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="mt-10">
+                    <input type="date" [formControlName]="'journeeSoins'" />
+                    <script>
+                      const input = document.querySelector('input');
+                      input.valueAsDate = new Date();
+                    </script>
+                    <span *ngIf="!createPostForm.get('journeeSoins').valid && createPostForm.get('journeeSoins').touched">
+                   Entrer une date valide
+                    </span>
+                  </div>
+                  <div class="mt-10">
+                    <input [formControlName]="'adresseSoins'" type="text" name="adresseSoins" placeholder="Adresse" required
+                           class="single-input">
+                    <span *ngIf="!createPostForm.get('adresseSoins').valid && createPostForm.get('adresseSoins').touched">
+                   Entrer une adresse valide
+                    </span>
+                  </div>
+                  <div class="mt-10">
+                    <input [formControlName]="'telSoins'" type="number" name="telSoins" placeholder="Téléphone" required
+                           class="single-input">
+                    <span *ngIf="!createPostForm.get('telSoins').valid && createPostForm.get('telSoins').touched">
+                   Entrer un numéro valide
+                    </span>
+                  </div>
+                  <label class="mr-sm-2" for="inlineFormCustomSelectST">Déscription complete de votre soins :</label>
+                  <editor [formControlName]="'description'" [init]="{
+                            height: 150,
+                            menubar: false,
+                            plugins: [
+                              'advlist autolink lists link image charmap print preview anchor',
+                              'searchreplace visualblocks code fullscreen',
+                              'insertdatetime media table paste code help wordcount'
+                            ],
+                            toolbar:
+                              'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help'
+                          }"></editor>
+                  <br>
+                  <ul class="blog-info-link">
+                    <li><button (click)="discardPost()" class="button rounded-0 primary-bg text-black-50 w-100 btn_1 boxed-btn"
+                                type="submit">Annuler</button></li>
+                    <li><button (click)="createPost()" class="button rounded-0 primary-bg text-black-50 w-100 btn_1 boxed-btn" type="submit"
+                                [disabled]="!createPostForm.get('soinsName').valid &&
+                                     !createPostForm.get('journeeSoins').valid &&
+                                     !createPostForm.get('adresseSoins').valid &&
+                                     !createPostForm.get('telSoins').valid ">Ajouter</button></li>
+                  </ul>
+                </div>
+            </form>
+          </div>
+        </div>
+    </div>
+</main>
+
+  <!--
+  <div class="container">
+  <div class="row ">
+    <hr />
+      <form class="post-form" [formGroup]="createPostForm" >
+        <div class="form-row col-md-12 align-content-center">
+          <div class="create-post-container row-cols-md-12 ">
+          <div class="create-post-heading">DE QUEL TYPE DE SOINS AVEZ-VOUS BESOIN ?</div>
+          <hr />
+            <div>
+            <select class="form-control" style="margin-top: 10px" [(ngModel)]="typeSoins" [formControlName]="'typeSoinsName'" >
+              <option selected >Quel professionnel recherchez-vous ?</option>
+              <option *ngFor="let subreddit of subreddits">{{subreddit.name}}</option>
+            </select>
+            </div>
+            <div *ngIf="typeSoins == 'Infirmier' ">
+
+              <input type="text" [formControlName]="'soinsName'" class="form-control" style="margin-top: 5px" placeholder="Title">
+
+              <div class="form-row align-items-center">
+                <div class="col-auto my-1">
+                  <label class="mr-sm-2" for="inlineFormCustomSelect2">Pansement</label>
+                  <select class="custom-select mr-sm-2" id="inlineFormCustomSelect2" [formControlName]="'pansement'">
+                    <option selected disabled>Choisir...</option>
+                    <option value="Plaie">Plaie</option>
+                    <option value="Brulure">Brûlure</option>
+                    <option value="Escarre">Escarre</option>
+                    <option value="Ulcere">Ulcère</option>
+                  </select>
+                </div>
+                <div class="col-auto my-1">
+                  <div class="custom-control custom-checkbox mr-sm-2">
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked31" [formControlName]="'pansementMeches'">
+                    <label class="form-check-label" for="flexSwitchCheckChecked31">Pansement avec mèches</label>
+                  </div>
+                </div>
+              </div>
+
+            <div class="form-row align-items-center">
+              <div class="col-auto my-1">
+                <label class="mr-sm-2" for="inlineFormCustomSelect3">Injection</label>
+                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect3" [formControlName]="'injection'">
+                  <option selected disabled>Type de l’injection</option>
+                  <option value="Anticoagulant">Anticoagulant</option>
+                  <option value="Vaccin">Vaccin</option>
+                  <option value="Insuline">Insuline</option>
+                  <option value="Vitamine">Vitamine</option>
+                  <option value="Anti-inflammatoire">Anti-inflammatoire</option>
+                  <option value="Antibiotique">Antibiotique</option>
+                </select>
+              </div>
+              <div class="col-auto my-1">
+                <input type="text" [formControlName]="'injecter'" class="custom-control-label" style="margin-top: 5px" placeholder="Nom du produit injecté">
+              </div>
+            </div>
+
+            <div class="form-row align-items-center">
+
+              <div class="col-auto my-1">
+                <div class="custom-control custom-checkbox mr-sm-2">
+                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked3" [formControlName]="'perfusion'">
+                  <label class="form-check-label" for="flexSwitchCheckChecked3">Perfusion</label>
+                </div>
+              </div>
+
+              <div class="col-auto my-1">
+                <div class="custom-control custom-checkbox mr-sm-2">
+                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked5" [formControlName]="'medicamenteuse'">
+                  <label class="form-check-label" for="flexSwitchCheckChecked5">Surveillance prise médicamenteuse </label>
+                </div>
+              </div>
+              <div class="col-auto my-1">
+                <div class="custom-control custom-checkbox mr-sm-2">
+                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked6" [formControlName]="'maintien'">
+                  <label class="form-check-label" for="flexSwitchCheckChecked6">Maintien de la liberté des voies aériennes supérieures</label>
+                </div>
+              </div>
+              <div class="col-auto my-1">
+                <div class="custom-control custom-checkbox mr-sm-2">
+                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked7" [formControlName]="'elimination'">
+                  <label class="form-check-label" for="flexSwitchCheckChecked7">Surveillance de l’élimination intestinale et urinaire</label>
+                </div>
+              </div>
+              <div class="col-auto my-1">
+                <div class="custom-control custom-checkbox mr-sm-2">
+                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked8" [formControlName]="'nutritive'">
+                  <label class="form-check-label" for="flexSwitchCheckChecked8">Soins et surveillance en assistance nutritive entérale ou parentérale</label>
+                </div>
+              </div>
+              <div class="col-auto my-1">
+                <div class="custom-control custom-checkbox mr-sm-2">
+                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked9" [formControlName]="'aspiration'">
+                  <label class="form-check-label" for="flexSwitchCheckChecked9">Aspiration des sécrétions qu’il soit ou non trachéotomisé</label>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="form-row align-items-center">
+              <div class="col-auto my-1">
+                <label class="mr-sm-2" for="inlineFormCustomSelectST">Stomie</label>
+                <select class="custom-select mr-sm-2" id="inlineFormCustomSelectST" [formControlName]="'stomie'">
+                  <option selected disabled>Nature de stomie</option>
+                  <option value="digestive">digestive</option>
+                  <option value="urinaire">urinaire</option>
+                </select>
+              </div>
+
+            </div>
+
+            <label class="mr-sm-2" for="inlineFormCustomSelectST">Autres Soins : Précisez la nature de votre soin</label>
+            <editor [formControlName]="'description'" [init]="{
+                        height: 150,
+                        menubar: false,
+                        plugins: [
+                          'advlist autolink lists link image charmap print preview anchor',
+                          'searchreplace visualblocks code fullscreen',
+                          'insertdatetime media table paste code help wordcount'
+                        ],
+                        toolbar:
+                          'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help'
+                      }"></editor>
+
+            </div>
+            </div>
+
+          <span>
+            <div style="margin-top: 5px" class="float-right">
+              <button (click)="discardPost()" class="btnDiscard">Annuler</button>
+              <button (click)="createPost()"
+                      class="btnCreatePost">Ajouter</button>
+            </div>
+          </span>
+        </div>
+      </form>
+  </div>
+</div>
+  -->
